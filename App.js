@@ -13,7 +13,9 @@ export default class App extends Component {
      // operations:"",
     //  ops:""
         //i:0,
+       
     }
+    operations = ['D','+','-','*','/']
   }
   calculationResult(){
    const text = this.state.resultText
@@ -22,7 +24,7 @@ buttonPressed(text){
   console.log(text)
 
 if(text == '='){
-  return this.calculationResult(this.state.resultText)
+  return this.calculationResult()
 }
 
   this.setState({
@@ -30,21 +32,36 @@ if(text == '='){
   })
 }
 
-operate(operations){
-  console.log(operations," operations")
-  switch(operations){
+operate(operation){
+  console.log(operation," operations")
+  switch(operation){
     case 'D':
     let text = this.state.resultText.split('')
     text.pop()
     this.setState({
       resultText:text.join('')
     })
+    break
+    case '+':
+    case '-':
+    case '*':
+    case '/':
+    const lastChar = this.state.resultText.split('').pop()
+    
+    // console.log(lastChar+"last")
+    if(operations.indexOf(lastChar) > 0 ) return
+  
+    if(this.state.resultText ==  "" ) return
+    this.setState({
+      resultText:  this.state.resultText + operation
+    })
+
     
   }
 }
   render() {
 
-        let operations = ['D','+','-','*','/']
+     // this.operations = ['D','+','-','*','/']
         let ops = []
   //       for( i=0; i< 5; i++){
   //       ops.push(
