@@ -19,6 +19,14 @@ export default class App extends Component {
   }
   calculationResult(){
    const text = this.state.resultText
+   //console.log(text,eval(text))
+   //BODMAS
+   //Brackets ->of->division -> mult -> add->sub
+  //  now parse this text ex -#+3*67/90
+  this.setState({
+    calculationText:eval(text)
+  })
+ 
   }
 buttonPressed(text){
   console.log(text)
@@ -85,7 +93,7 @@ operate(operation){
              <Text style={styles.resultText}>{this.state.resultText}</Text>
         </View>
         <View style={styles.calculation}>
-        <Text style={styles.calculationText}>{this.state.resultText}</Text>
+        <Text style={styles.calculationText}>{this.state.calculationText}</Text>
         </View>
         <View style={styles.buttons}>
             <View style={styles.numbers}>
