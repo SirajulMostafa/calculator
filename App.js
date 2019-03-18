@@ -28,11 +28,23 @@ export default class App extends Component {
   })
  
   }
+
+  validate(){
+   const text = this.state.resultText
+   switch(text.slice(-1)){
+      case '+':
+      case '-':
+      case '*':
+      case '/':
+          return false
+      }
+     return true
+  }
 buttonPressed(text){
   console.log(text)
 
 if(text == '='){
-  return this.calculationResult()
+  return this.validate() && this.calculationResult()
 }
 
   this.setState({
